@@ -13,9 +13,11 @@ interface CatsApi{
         val BaseURL = "https://api.thecatapi.com"
     }
 
+    //получаем список пород
     @GET("/v1/breeds")
     suspend fun listBreeds(@Header("x-api-key") apiKey: String = "DEMO_API_KEY"): Response<List<CatBreed>?>
 
+    //получаем фото породы
     @GET("/v1/images/search?limit=1")
     suspend fun getBreedImageInfo(@Header("x-api-key") apiKey: String = "DEMO_API_KEY",
                                   @Query("breed_ids") breedId: String): Response<List<CatBreedImageInfo>?>

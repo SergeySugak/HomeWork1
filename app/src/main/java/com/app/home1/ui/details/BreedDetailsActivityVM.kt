@@ -18,8 +18,14 @@ import javax.net.ssl.HttpsURLConnection
 
 class BreedDetailsActivityVM(application: Application) : BaseVM<CatBreedImageInfo>(application) {
     private lateinit var catsApi: CatsApi
-    var breed = ObservableField<CatBreed>()
+    val breed = ObservableField<CatBreed>()
 
+    //Основная функиция загрузки данных по фото пород
+    //Если порода равна null - очищаем данные (BaseVM.data)
+    //Из полученного набора берет первую
+    //(на самом деле в CatsApi так же прописано максимальное количество получаемых значений равное 1)
+    //Загружает на IO диспетчере
+    //Если ответ не равен HTTP_OK - бросаем исключение
     override fun load() {
         val tmpBreed = breed.get()
         if (tmpBreed == null){
@@ -59,6 +65,7 @@ class BreedDetailsActivityVM(application: Application) : BaseVM<CatBreedImageInf
         }
     }
 
+    //При переустановке породы выполняем перезапрос данных
     fun setBreed(value: CatBreed?){
         if (breed.get() != value) {
             breed.set(value)

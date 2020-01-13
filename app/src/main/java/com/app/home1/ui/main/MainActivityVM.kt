@@ -18,9 +18,9 @@ import javax.net.ssl.HttpsURLConnection
 class MainActivityVM(application: Application) : BaseVM<List<CatBreed>>(application) {
     private lateinit var catsApi: CatsApi
 
-    //Main loading function.
-    //Loads data using coroutine on IO dispatcher.
-    //Throws exception in any case when response code is not 200.
+    //Основная функиция загрузки данных пород
+    //Загружает на IO диспетчере
+    //Если ответ не равен HTTP_OK - бросаем исключение
     override fun load(){
         val context: Application = getApplication()
         if (!Network.isOnline(context)) {
