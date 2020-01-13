@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="catBreed"
+            type="com.app.home1.models.CatBreed"/>
+        <variable
+            name="breedOpenListener"
+            type="com.app.home1.ui.main.MainActivity.BreedInfoOpenListener" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        android:focusable="true"
+        android:clickable="true"
+        android:orientation="vertical"
+        android:onClick="@{(view)->breedOpenListener.onOpenBreedInfo(catBreed)}"
+        >
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{catBreed.name}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:ellipsize="end"
+            android:padding="4dp"
+            tools:text="Cat breed name"/>
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{catBreed.description}"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:padding="4dp"
+            android:layout_below="@+id/name"
+            tools:text="Cat breed description"/>
+    </RelativeLayout>
+</layout>

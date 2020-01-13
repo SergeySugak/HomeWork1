@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:fresco="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.app.home1.ui.details.BreedDetailsActivityVM"/>
+        <import type="android.view.View" alias="View"/>
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:context=".ui.details.BreedDetailsActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/app_bar_height"
+            android:fitsSystemWindows="true"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/toolbar_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:toolbarId="@+id/toolbar">
+
+                <com.facebook.drawee.view.SimpleDraweeView
+                    android:id="@+id/breed_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    fresco:actualImageScaleType="focusCrop"
+                    />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context=".ui.details.BreedDetailsActivity"
+            tools:showIn="@layout/activity_breed_details">
+
+            <RelativeLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:padding="@dimen/std_padding">
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/str_name"/>
+                <TextView
+                    android:id="@+id/name_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/name"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/std_padding"
+                    android:text="@{viewModel.breed.name}"
+                    tools:text="str_name"/>
+
+                <TextView
+                    android:id="@+id/weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/name"
+                    android:text="@string/str_weight"/>
+                <TextView
+                    android:id="@+id/weight_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/weight"
+                    android:layout_below="@+id/name_val"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/std_padding"
+                    android:text="@{viewModel.breed.weight.metric}"
+                    tools:text="@string/str_weight"/>
+
+                <TextView
+                    android:id="@+id/origin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/weight"
+                    android:text="@string/str_origin"/>
+                <TextView
+                    android:id="@+id/origin_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/origin"
+                    android:layout_below="@+id/weight_val"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/std_padding"
+                    android:text="@{viewModel.breed.weight.metric}"
+                    tools:text="@string/str_origin"/>
+
+
+                <TextView
+                    android:id="@+id/wikipedia_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentStart="true"
+                    android:layout_below="@+id/origin"
+                    android:text="@string/str_wikipedia_url"/>
+                <TextView
+                    android:id="@+id/wikipedia_url_val"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toEndOf="@+id/wikipedia_url"
+                    android:layout_below="@+id/origin_val"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/std_padding"
+                    android:text="@{viewModel.breed.weight.metric}"
+                    tools:text="@string/str_wikipedia_url"/>
+
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <ProgressBar
+            android:id="@+id/progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            style="?android:attr/progressBarStyleLarge"
+            android:visibility="@{viewModel.inProgress ? View.VISIBLE : View.GONE}"
+            />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
